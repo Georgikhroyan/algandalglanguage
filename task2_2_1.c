@@ -13,3 +13,4 @@ int main()
     res /= x;
     printf("res : %lf ",res);
 }
+
