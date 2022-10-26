@@ -31,5 +31,3 @@ int main()
     printf("res : %lf ",res);
         
 }
-
-
