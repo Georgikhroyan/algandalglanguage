@@ -23,7 +23,7 @@ char preobr(spis* spisok,char* word){
     spis* red;
     int counter = 0;
     while(spisok->next!=NULL){
-        if(strcmp(spisok->word,word) == 0 & spisok->next != NULL){
+        if(strcmp(spisok->word,word) == 0 && spisok->next != NULL){ /*&*/
             if(checker == spisok){
                 spisok->word = "աաաաաա";
                 counter += 1;
