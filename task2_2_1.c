@@ -4,12 +4,10 @@ int main()
 {
     double x;
     double a;
-    char ch;
     double res=0;
     scanf("%lf",&x);
-    while(scanf( "%lf%c", &a, &ch ) == 2 && ch != EOF ){
-        res = (res + a)*x;
+    while(scanf( "%lf", &a  ) == 1){
+        res = res*x + a;
     }
-    res /= x;
     printf("res : %lf ",res);
 }

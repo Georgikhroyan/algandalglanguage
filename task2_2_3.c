@@ -34,7 +34,7 @@ int main()
         
         else
         {
-            res = (res + a)*x;
+            res = (res)*x + a;
         }
         
         if(flag <= 2)
@@ -54,7 +54,6 @@ int main()
             }
         }
     proizv = proizv/x;
-    res = res/x;
     printf(" integral : \t%lf\n ", integral);
     printf("proizv : \t%lf\n ", proizv);
     printf("res : \t%lf\n ",res);

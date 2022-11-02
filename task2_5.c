@@ -74,6 +74,7 @@ int main()
         input[strlen(input)-1] = '\0'; // обрезаем конечный '\n'
         if(strcmp(input,"end") == 0)
         {
+            if (start == NULL){return 0 ;}
             break;
         }
         else if (start == NULL) {

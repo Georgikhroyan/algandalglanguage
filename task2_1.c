@@ -18,22 +18,17 @@ while((module(x1-x0))>=e)
 {
 	x0 = x1;
 	x1 = (0.5)*(x0+(x/x0));
-	printf("\n-------%lf\t%lf-------\n",x0,x1);
 
 }
-printf("\n%.10g\n",x1);
-return 0;
+return x1;
 }
 int main()
 {	
 	double e;
 	double x;
-	printf("Ввод e : \t");
 	scanf("%lf",&e);
-	while(getchar() != EOF){
-	    printf("Ввод x : \t");
-		scanf("%lf",&x);
-		nyuton(x,e);
+	while(scanf("%lf",&x) == 1){
+		printf("%lf\n",nyuton(x,e));
 	}  
 		
 }
