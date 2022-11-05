@@ -47,7 +47,6 @@ double strToDouble(char str[]){
             break;
         }
     }
-    printf("---%d",notoch);
     if (notoch != 1){
     double m = 0.1;
     for(;i < strlen(str);i++){

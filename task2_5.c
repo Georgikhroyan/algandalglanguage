@@ -18,6 +18,7 @@ char ADD(spis* spisok, char* word) {
     ((spis*) owner->next)->next = NULL;
 }
 char preobr(spis* spisok,char* word){
+    start = spisok;
     spis* checker;
     checker = spisok;
     spis* red;
@@ -56,28 +57,22 @@ void memory_cleaner(spis* spisok) {
 }
 void print(spis* spisok) {
     while (spisok != NULL) {
-        printf("$ %s\n", spisok->word);
+        printf("%s\t", spisok->word);
         spisok = spisok->next;
     }
+    printf("\n");
 }
 int main()
 {
     char* last_input;
     void* pointer;
     spis* checker;
-    printf("Ввод слов : (end -конец ввода)\n");
+    char ch;
+    printf("Ввод слов : \n");
     char* input = calloc(1024, sizeof(char));
     memset(input, 0, 1024);
-    while (strcmp(input, "end") != 0) {
-        printf("Слово : ");
-        fgets(input, 1024, stdin);
-        input[strlen(input)-1] = '\0'; // обрезаем конечный '\n'
-        if(strcmp(input,"end") == 0)
-        {
-            if (start == NULL){return 0 ;}
-            break;
-        }
-        else if (start == NULL) {
+    while (scanf("%s",input) == 1){
+        if (start == NULL) {
             start = malloc(sizeof(spis));
             pointer = start;
             start->word = (char*) calloc(strlen(input) + 1, sizeof(char));
@@ -90,6 +85,9 @@ int main()
             printf("Добавлено: %s\n", input);
         }
 
+    }
+    if(start == NULL){
+        return 0 ;
     }
     spis* copy;
     copy=start;
