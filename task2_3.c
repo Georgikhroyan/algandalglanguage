@@ -37,17 +37,17 @@ int main()
 {
 double a;
 char ch;
-while(scanf( "%lf%c", &a, &ch ) == 2 && ch != EOF )
+while(scanf( "%lf", &a) == 1 )
 {
 
 	clock_t time_start= clock();
-	double c = rec_fibb(a);
-	clock_t time_start_2= clock();
 	double d = int_fibb(a);
 	printf("Без рекурсии։ ");
-	printf("%lf : выполнено за %f мс \n",d,(double)(clock()-time_start_2)/CLOCKS_PER_SEC);
+	printf("%lf : выполнено за %f мс \n",d,(double)(time_start_2-time_start)/CLOCKS_PER_SEC);
+	clock_t time_start_2= clock();
+	double c = rec_fibb(a);
 	printf("Рекурсивно։ ");
-	printf("%lf : выполнено за %f с \n",c,(double)(time_start_2-time_start)/CLOCKS_PER_SEC);
+	printf("%lf : выполнено за %f с \n",c,(double)(clock()-time_start_2)/CLOCKS_PER_SEC);
 	
 
 }

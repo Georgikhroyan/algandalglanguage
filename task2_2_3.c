@@ -25,7 +25,7 @@ int main()
     double res=0;
     int flag = 0;
     scanf("%d",&n);
-    while(scanf( "%lf%c", &a, &ch ) == 2 && ch != EOF ){
+    while(scanf( "%lf", &a ) == 1 ){
         /*x, An , An-1 An-2 */
     	if(flag == 0){
     		x = a;

@@ -6,7 +6,7 @@ typedef struct {
     void* next;
 } spis;
 spis* start = NULL;
-char ADD(spis* spisok, char* word) {
+spis *ADD(spis* spisok, char* word) {
     spis* owner;
     while (spisok != NULL) {
         owner = spisok;
@@ -17,7 +17,7 @@ char ADD(spis* spisok, char* word) {
     strcpy(((spis*) owner->next)->word, word);
     ((spis*) owner->next)->next = NULL;
 }
-char preobr(spis* spisok,char* word){
+spis *preobr(spis* spisok,char* word){
     start = spisok;
     spis* checker;
     checker = spisok;

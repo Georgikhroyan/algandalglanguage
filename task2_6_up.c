@@ -1,5 +1,3 @@
-
-
 #include <stdio.h>
 #include <stdlib.h>
 struct node {
@@ -15,12 +13,12 @@ struct node *newNode(int item) {
 void inorder(struct node *root) {
   if (root != NULL) {
     inorder(root->left);
-    printf("%d\t ", root->key);
+    printf("==> %d\t\n ", root->key);
     inorder(root->right);
   }
 }
 
-int *search(struct node *root, int key)
+struct node *search(struct node *root, int key)
 {
     if ((root == NULL) || (root -> key == key))
         return root;
@@ -85,19 +83,19 @@ int main() {
         }
         else if(ch[0] == '+'){
             if(search(root,atoi(chislo))){
-                printf("\nЧисло уже есть в дереве \n");
+                printf("\nЧисло %d уже есть в дереве \n",atoi(chislo));
             }
             else{
-                printf("\nЧисло добавлено в дерево!\n");
+                printf("\nЧисло %d добавлено в дерево!\n",atoi(chislo));
                 root = insert(root,atoi(chislo));
             }
         }
         else if(ch[0] == '-'){
             if(!search(root,atoi(chislo))){
-                printf("\nЧисла нет в дереве \n");
+                printf("\nЧисла %d нет в дереве \n",atoi(chislo));
             }
             else{
-                printf("\nЧисло удалено из дерева!\n");
+                printf("\nЧисло %d удалено из дерева!\n",atoi(chislo));
                 root = deleteNode(root,atoi(chislo));
             }
         }
