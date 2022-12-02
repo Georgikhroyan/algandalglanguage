@@ -13,84 +13,62 @@ void error(); /* сообщает об ошибке в выражении и п�
 
 main()
 {
-	int result;
-	setjmp(begin);
-	printf("==>");
-	getlex();
-	result = expr();
-	if ( curlex != '\n' ) error();
-	printf("\n%d\n",result);
-	return 0;
+ int result;
+ setjmp(begin);
+ printf("==>");
+ getlex();
+ result = expr();
+ if ( curlex != '\n' ) error();
+ printf("\n%d\n",result);
+ return 0;
 }
 void getlex()
 {
-	while ( (curlex = getchar()) == ' ' );
+ while ( (curlex = getchar()) == ' ' );
 }
 void error(void)
 {
-	printf("\nОшибка\n");
-	while(getchar() != '\n');
-	longjmp(begin,1);
+ printf("\nОшибка\n");
+ while(getchar() != '\n');
+ longjmp(begin,1);
 }
 int expr()
-{	
-	int e = add();
-	while (curlex != '\n' && curlex != '*' && curlex != '/' && curlex != '(' && curlex != ')' ) {
-	if (curlex == '+')
-	{getlex(); e += add();}
-	if (curlex == '-')
-	{getlex(); e -= sub();}
-	}
-	return e;
+{ 
+ int e = add();
+ while (curlex == '+' || curlex == '-') {
+ if (curlex == '+')
+     {getlex(); e += add();}
+ else
+     {getlex(); e -= add();}}
+ 
+ return e;
 }
-int sub()
-{
-	int a = mult() ;
-	while (curlex != '\n' && curlex != '+' && curlex != '-' && curlex != '(' && curlex != ')') {
-	if (curlex == '*')
-	{getlex(); a*= mult();}
-	if (curlex == '/')
-	{getlex(); a/= divide();}
-	}
-	return a;
-}
+
 int add()
-{	int a = mult();
-	while (curlex != '\n' && curlex != '+' && curlex != '-' && curlex != '(' && curlex != ')') {
-	if (curlex == '/')
-	{getlex(); a/= mult();}
-	if (curlex == '*')
-	{getlex(); a*= divide();}
-	}
-	return a;
+{ int a = mult();
+ while (curlex == '/' ||  curlex == '*'){
+     if(curlex == '/'){
+		getlex();int c = mult();
+		if(c == 0){
+			printf("Деление на ноль в --->(%d/%d)",a,c);
+			error();
+		}
+		else{
+        a/= c;}}
+     else
+         {getlex(); a*= mult();}}
+ return a;
 }
 int mult()
 {
-	int m ;
-	switch(curlex){	
-		case '0': case '1': case '2': case '3' : case '4' : case '5' : case '6' : case '7' :
-		case '8' : case '9' : m = curlex -'0'; break;
-		case '(' : getlex() ; m = expr();
-		if (curlex == ')') break;
-		default : error();
-	}
-	getlex();
-	return m;
-}
-int divide()
-{
-	int m;
-
-	switch(curlex)	
-	{
-		case '0': case '1': case '2': case '3' : case '4' : case '5' : case '6' : case '7' :
-		case '8' : case '9' : m = curlex -'0'; break;
-		case '(' : getlex() ; m = expr();
-		if (curlex == ')') break;
-		default: error();
-	}
-
-	getlex();
-
-	return m;
+ int m ;
+ switch(curlex){ 
+  case '0': case '1': case '2': case '3' : case '4' : case '5' : case '6' : case '7' :
+  case '8' : case '9' : m = curlex -'0'; break;
+  case '(' : getlex() ; m = expr();
+  if (curlex == ')') break;
+  default : error();
+ }
+ getlex();
+ return m;
 }

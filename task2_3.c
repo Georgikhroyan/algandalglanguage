@@ -43,7 +43,7 @@ while(scanf( "%lf", &a) == 1 )
 	clock_t time_start= clock();
 	double d = int_fibb(a);
 	printf("Без рекурсии։ ");
-	printf("%lf : выполнено за %f мс \n",d,(double)(time_start_2-time_start)/CLOCKS_PER_SEC);
+	printf("%lf : выполнено за %f мс \n",d,(double)(clock()-time_start)/CLOCKS_PER_SEC);
 	clock_t time_start_2= clock();
 	double c = rec_fibb(a);
 	printf("Рекурсивно։ ");
