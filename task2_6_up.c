@@ -13,7 +13,7 @@ struct node *newNode(int item) {
 void inorder(struct node *root) {
   if (root != NULL) {
     inorder(root->left);
-    printf("==> %d\t\n ", root->key);
+    printf("==> %d\t\n", root->key);
     inorder(root->right);
   }
 }
@@ -32,7 +32,6 @@ struct node *insert(struct node *node, int key) {
     node->left = insert(node->left, key);
   else
     node->right = insert(node->right, key);
-
   return node;
 }
 struct node *minValueNode(struct node *node) {
@@ -46,7 +45,7 @@ struct node *deleteNode(struct node *root, int key) {
   if (key < root->key)
     root->left = deleteNode(root->left, key);
   else if (key > root->key)
-    root->right = deleteNode(root->right, key);
+    root->right = deleteNode(root->right, key); 
   else {
     if (root->left == NULL) {
       struct node *temp = root->right;
@@ -69,7 +68,7 @@ int main() {
     char e;
     char chislo[100];
  
-    while(scanf( "%s", &ch)  && (e = getchar()) != EOF){
+    while(scanf( "%s", ch)){
         for (int i = 0 ; i < 99 ;i++){
             chislo[i] = ch[i+1];
         }
@@ -102,6 +101,12 @@ int main() {
         else if(ch[0] == 'i'){
             inorder(root);
             printf("\n");
+        }
+        else if(ch[0] == 'q')
+        {
+          printf("дерево : \n");
+          inorder(root);
+          return 0;
         }
     }
 }
